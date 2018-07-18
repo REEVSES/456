@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>testOne</title>
+    <title>focus</title>
   </head>
   <body>
   <div style="align:center"><span><a href="https://113.108.182.3/aiap">测试商户号生成链接</a></span></div>

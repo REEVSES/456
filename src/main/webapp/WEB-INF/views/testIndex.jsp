@@ -13,7 +13,7 @@
   <body>
   <div style="align:center"><span><a href="https://113.108.182.3/aiap">测试商户号生成链接</a></span></div>
   <div>
-  <span >输入测试商户号</span><input id="testSHH" type="text" placeholder="请输入刚生成的测试商户号" class="inp-fon">
+  <span >输入测试商户号0723</span><input id="testSHH" type="text" placeholder="请输入刚生成的测试商户号" class="inp-fon">
   </div>
   </body>
 </html>

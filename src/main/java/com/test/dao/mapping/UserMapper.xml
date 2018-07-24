@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.test.dao.companyMemberDao">
+        <id column="ID" property="ID" jdbcType="INTEGER" />
+        <result column="USERNAME" property="USERNAME" jdbcType="VARCHAR" />
+        <result column="USERID" property="USERID" jdbcType="VARCHAR" />
+        <result column="PASSWORD" property="PASSWORD" jdbcType="VARCHAR" />
+        <result column="SEX" property="SEX" jdbcType="VARCHAR" />
+        <result column="PHONENUMBER" property="PHONENUMBER" jdbcType="VARCHAR" />
+        <result column="DEPARTMENT" property="DEPARTMENT" jdbcType="VARCHAR" />
+        <result column="DEPARTMENTID" property="DEPARTMENTID" jdbcType="VARCHAR" />
+        <result column="SECTOR" property="SECTOR" jdbcType="VARCHAR" />
+        <result column="SECTORID" property="SECTORID" jdbcType="VARCHAR" />
+        <result column="OPTION1" property="OPTION1" jdbcType="VARCHAR" />
+        <result column="OPTION2" property="OPTION2" jdbcType="VARCHAR" />
+        <result column="OPTION3" property="OPTION3" jdbcType="VARCHAR" />
+        <result column="OPTION4" property="OPTION4" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List">
+		ID, USERNAME, USERID, PASSWORD, SEX, PHONENUMBER, DEPARTMENT,DEPARTMENTID,SECTOR,SECTORID,OPTION1,OPTION2,OPTION3,OPTION4
+	</sql>
+    <select id="selectByID" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" />
+        from companyMember
+        where ID = #{ID,jdbcType=INTEGER}
+    </select>
+</mapper>

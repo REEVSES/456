@@ -44,8 +44,26 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>/index.jsp</welcome-file>
+        <welcome-file>/welcome.jsp</welcome-file>
     </welcome-file-list>
+
+    <!-- 表示当系统发生404就是不存在请求地址的错误的时候，页面跳转到404.html页面。 -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.jsp</location>
+    </error-page>
+
+    <!-- 表示当系统发生500也就是操作异常错误的时候，页面跳转到error.jsp页面。 -->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+
+    <!-- 表示当系统发生空指针异常错误的时候，页面跳转到error.html页面。 -->
+    <error-page>
+        <exception-type>java.lang.NullPointerException</exception-type>
+        <location>/error.jsp</location>
+    </error-page>
     <!-- 配置session超时时间，单位分钟 -->
     <session-config>
         <session-timeout>15</session-timeout>

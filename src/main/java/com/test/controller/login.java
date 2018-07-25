@@ -6,13 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.test.dao.companyMemberDao;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-
-@RequestMapping("/test")
 @Controller
-public class TestController extends HttpServlet {
+public class login extends HttpServlet {
 
     public MemberService userService;
-
     public MemberService getUserService() {
         return userService;
     }
@@ -22,13 +19,18 @@ public class TestController extends HttpServlet {
         this.userService = userService;
     }
 
-    @RequestMapping("showUser")
+    @RequestMapping("index")
+    public String testIndex(){
+        return "testIndex";
+    }
+
+    @RequestMapping("login")
     public String showUser(HttpServletRequest request) {
         int id=Integer.parseInt(request.getParameter("id"));
         System.out.print("解析id=:"+id+"\n");
         companyMemberDao u = userService.getUserById(id);
         System.out.print("解析返回username=:"+u.getUSERNAME()+"\n");
         request.setAttribute("memberInfo", u);
-        return "showUser";
+        return "login";
     }
 }

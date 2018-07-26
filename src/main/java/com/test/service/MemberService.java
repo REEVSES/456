@@ -1,5 +1,6 @@
 package com.test.service;
-import com.test.dao.companyMemberDao;
+import com.test.dao.User;
 public interface MemberService {
-    companyMemberDao getUserById(int id);
+    User getUserByName(String username);
+    boolean resetPwd(String newpwd,String username);
 }

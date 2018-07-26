@@ -24,7 +24,7 @@ war{
 }
 
 ext {
-    spring_version = "4.1.6.RELEASE"
+    spring_version = "4.2.6.RELEASE"
 }
 
 
@@ -88,7 +88,7 @@ dependencies {
 
     //数据库驱动
     compile "mysql:mysql-connector-java:5.1.23"
-    //compile "com.jk.oracle:ojdbc14:1.1.14"
+    compile "com.microsoft.sqlserver:sqljdbc4:4.0"
 
     //连接池
     compile "com.alibaba:druid:1.0.12"
@@ -103,4 +103,5 @@ dependencies {
     compile "com.fasterxml.jackson.core:jackson-core:2.1.0"
     compile "com.fasterxml.jackson.core:jackson-databind:2.1.0"
     compile "com.fasterxml.jackson.core:jackson-annotations:2.1.0"
+
 }

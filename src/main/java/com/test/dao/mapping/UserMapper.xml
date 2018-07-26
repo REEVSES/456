@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.test.dao.UserMapper">
-    <resultMap id="BaseResultMap" type="com.test.dao.companyMemberDao">
-        <id column="ID" property="ID" jdbcType="INTEGER" />
-        <result column="USERNAME" property="USERNAME" jdbcType="VARCHAR" />
-        <result column="USERID" property="USERID" jdbcType="VARCHAR" />
-        <result column="PASSWORD" property="PASSWORD" jdbcType="VARCHAR" />
-        <result column="SEX" property="SEX" jdbcType="VARCHAR" />
-        <result column="PHONENUMBER" property="PHONENUMBER" jdbcType="VARCHAR" />
-        <result column="DEPARTMENT" property="DEPARTMENT" jdbcType="VARCHAR" />
-        <result column="DEPARTMENTID" property="DEPARTMENTID" jdbcType="VARCHAR" />
-        <result column="SECTOR" property="SECTOR" jdbcType="VARCHAR" />
-        <result column="SECTORID" property="SECTORID" jdbcType="VARCHAR" />
-        <result column="OPTION1" property="OPTION1" jdbcType="VARCHAR" />
-        <result column="OPTION2" property="OPTION2" jdbcType="VARCHAR" />
-        <result column="OPTION3" property="OPTION3" jdbcType="VARCHAR" />
-        <result column="OPTION4" property="OPTION4" jdbcType="VARCHAR" />
+    <resultMap id="BaseResultMap" type="com.test.dao.User">
+        <id column="uid" property="uid" jdbcType="INTEGER" />
+        <result column="id" property="id" jdbcType="INTEGER" />
+        <result column="userid" property="userid" jdbcType="VARCHAR" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="onwork" property="onwork" jdbcType="INTEGER" />
+        <result column="whzid" property="whzid" jdbcType="INTEGER" />
+        <result column="leve" property="leve" jdbcType="INTEGER" />
+        <result column="whz" property="whz" jdbcType="INTEGER" />
+        <result column="onwh" property="onwh" jdbcType="INTEGER" />
+        <result column="userpwd" property="userpwd" jdbcType="VARCHAR" />
+        <result column="whz_qx" property="whz_qx" jdbcType="VARCHAR" />
+        <result column="部门" property="depet" jdbcType="VARCHAR" />
+        <result column="团队" property="team" jdbcType="VARCHAR" />
+        <result column="fullpartname" property="fullpartname" jdbcType="VARCHAR" />
     </resultMap>
     <sql id="Base_Column_List">
-		ID, USERNAME, USERID, PASSWORD, SEX, PHONENUMBER, DEPARTMENT,DEPARTMENTID,SECTOR,SECTORID,OPTION1,OPTION2,OPTION3,OPTION4
+        uid,id,userid,username,onwork,whzid,leve,whz,onwh,userpwd,whz_qx,部门,团队,fullpartname
 	</sql>
-    <select id="selectByID" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List" />
-        from companyMember
-        where ID = #{ID,jdbcType=INTEGER}
+        from [qdtlzf].[dbo].[userlist]
+        where username = #{username,jdbcType=VARCHAR}
     </select>
+
+    <update id="resetPwd" parameterType="java.lang.String">
+        <!-- 执行的SQL语句 -->
+        UPDATE [qdtlzf].[dbo].[userlist] SET
+        userpwd = #{newpwd}
+        WHERE username = #{username}
+    </update>
+
 </mapper>

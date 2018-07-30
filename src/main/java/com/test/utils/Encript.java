@@ -3,7 +3,7 @@ package com.test.utils;
 import java.security.MessageDigest;
 
 /**
- *
+ * MD5加密，默认加密方式
  */
 public class Encript {
     //十六进制下数字到字符的映射数组

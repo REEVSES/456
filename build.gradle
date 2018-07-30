@@ -11,7 +11,7 @@ repositories {
     maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
 }
 
-//配置所有文件打包
+//所有文件打包一起打包
 processResources {
     from('src/main/java') {
         include '**/*'
@@ -30,16 +30,9 @@ ext {
 
 //依赖的配置
 dependencies {
-    //    和Maven类似，gradle导入依赖包也可以定义其作用的生命周期：
-    //    compile：编译时必须。
-    //    runtime：运行时必须，包括编译时。
-    //    testCompile：测试编译时必须。
-    //    testRuntime：测试运行时必须，包括编译时。
-    //    注：此外配置依赖包，还可以模块化配置、导入list、配置是否传递等。
 
     //单元测试
     testCompile group: 'junit', name: 'junit', version: '4.12'
-
 
     //servlet依赖
     compile "javax.servlet:servlet-api:3.0-alpha-1"
@@ -65,7 +58,7 @@ dependencies {
     compile "org.aspectj:aspectjrt:1.7.4"
     compile "org.aspectj:aspectjweaver:1.7.4"
 
-    //springmvc + Spring Configuration
+    //springmvc + Spring 配置
     compile "org.springframework:spring-web:$spring_version"
     compile "org.springframework:spring-webmvc:$spring_version"
     compile "org.springframework:spring-aop:$spring_version"
@@ -81,12 +74,10 @@ dependencies {
     compile "org.springframework:spring-tx:$spring_version"
     compile "org.springframework:spring-test:$spring_version"
 
-    //MyBatis
+    //MyBatis,数据库驱动
     compile "org.mybatis:mybatis:3.0.5"
     //mybatis spring 插件
     compile "org.mybatis:mybatis-spring:1.0.1"
-
-    //数据库驱动
     compile "mysql:mysql-connector-java:5.1.23"
     compile "com.microsoft.sqlserver:sqljdbc4:4.0"
 
@@ -99,9 +90,13 @@ dependencies {
     //log4j
     compile "log4j:log4j:1.2.17"
 
-    //傻吊包
+    //json解析包,对象类与json的互换
     compile "com.fasterxml.jackson.core:jackson-core:2.1.0"
     compile "com.fasterxml.jackson.core:jackson-databind:2.1.0"
     compile "com.fasterxml.jackson.core:jackson-annotations:2.1.0"
+    compile "com.alibaba:fastjson:1.2.7"
+    compile "org.codehaus.jackson:jackson-mapper-asl:1.9.8"
 
+    //dom4j解析xml文件
+    compile "dom4j:dom4j:1.6.1"
 }

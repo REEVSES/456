@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.OffLineMapper">
+    <resultMap id="BaseResultMap" type="com.test.dao.OffLine">
+        <id column="shbm" property="merchantNo" jdbcType="VARCHAR" />
+        <result column="zdbm" property="terminalNo" jdbcType="VARCHAR" />
+        <result column="gszcmc" property="business_registration_name" jdbcType="VARCHAR" />
+        <result column="fdmc" property="store_business_name" jdbcType="VARCHAR" />
+        <result column="shsptgrq" property="signon_time" jdbcType="VARCHAR" />
+        <result column="shlyqd" property="source_channel" jdbcType="VARCHAR" />
+        <result column="whr" property="guardian" jdbcType="VARCHAR" />
+        <result column="shzt" property="business_state" jdbcType="VARCHAR" />
+        <result column="zd_zdzt" property="terminal_state" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        shbm,zdbm,gszcmc,fdmc,shsptgrq,shlyqd,whr,shzt,zd_zdzt
+	</sql>
+    <select id="selectShouli" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from [qdtlzf].[dbo].[tlsh]
+        where tzr =#{username,jdbcType=VARCHAR} and gszcmc like CONCAT(CONCAT('%', #{tiaojian.business_registration_name,jdbcType=VARCHAR}), '%') and fdmc   like CONCAT(CONCAT('%', #{tiaojian.store_business_name,jdbcType=VARCHAR}),'%') and shbm  like CONCAT(CONCAT('%', #{tiaojian.merchant_code,jdbcType=VARCHAR}),'%') and whr  like CONCAT(CONCAT('%', #{tiaojian.guardian,jdbcType=VARCHAR}),'%') and shlyqd  like CONCAT(CONCAT('%', #{tiaojian.source_channel,jdbcType=VARCHAR}),'%') and shzt like CONCAT(CONCAT('%', #{tiaojian.business_state,jdbcType=VARCHAR}),'%') and zd_zdzt like CONCAT(CONCAT('%', #{tiaojian.terminal_state,jdbcType=VARCHAR}),'%')
+        and shsptgrq  BETWEEN #{tiaojian.startTime} AND #{tiaojian.endTime}
+        order by shsptgrq  desc
+    </select>
+</mapper>

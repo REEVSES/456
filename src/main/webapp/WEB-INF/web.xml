@@ -53,17 +53,17 @@
         <location>/404.jsp</location>
     </error-page>
 
-    <!-- 表示当系统发生500也就是操作异常错误的时候，页面跳转到error.jsp页面。 -->
+ <!--   &lt;!&ndash; 表示当系统发生500也就是操作异常错误的时候，页面跳转到error.jsp页面。 &ndash;&gt;
     <error-page>
         <error-code>500</error-code>
         <location>/error.jsp</location>
     </error-page>
 
-    <!-- 表示当系统发生空指针异常错误的时候，页面跳转到error.jsp页面。 -->
+    &lt;!&ndash; 表示当系统发生空指针异常错误的时候，页面跳转到error.jsp页面。 &ndash;&gt;
     <error-page>
         <exception-type>java.lang.NullPointerException</exception-type>
         <location>/error.jsp</location>
-    </error-page>
+    </error-page>-->
     <!-- 配置session超时时间，单位分钟 -->
     <session-config>
         <session-timeout>15</session-timeout>

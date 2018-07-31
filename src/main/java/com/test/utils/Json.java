@@ -1,4 +1,4 @@
-package com.test.dao;
+package com.test.utils;
 
 /**
  * json登录信息返回判断

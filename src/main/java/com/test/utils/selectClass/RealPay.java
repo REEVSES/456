@@ -2,7 +2,6 @@ package com.test.utils.selectClass;
 
 /**
  * 实名付查询 json类
- *
  * @author 龙龙 E-mail: 247452312@qq.com
  * @version 1.0
  * @date 2018-07-30 11:20
@@ -15,9 +14,23 @@ public class RealPay {
     private String merchant_state;
     private String startTime;
     private String endTime;
-
     private Integer page;
     private Integer limit;
+
+    @Override
+    public String toString() {
+        return "RealPay{" +
+                "merchant_name='" + merchant_name + '\'' +
+                ", merchant_num='" + merchant_num + '\'' +
+                ", guardian='" + guardian + '\'' +
+                ", source_channel='" + source_channel + '\'' +
+                ", merchant_state='" + merchant_state + '\'' +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", page=" + page +
+                ", limit=" + limit +
+                '}';
+    }
 
     public String getMerchant_name() {
         return merchant_name;

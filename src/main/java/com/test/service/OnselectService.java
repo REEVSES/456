@@ -1,4 +1,10 @@
 package com.test.service;
+
+import com.test.dao.RealPayback;
+import com.test.utils.selectClass.RealPay;
+
+import java.util.List;
+
 /**
  * @program:456
  * @description:线上条线数据查询接口
@@ -7,5 +13,6 @@ package com.test.service;
  */
 
 public interface OnselectService {
-
+    //实名付条线
+    List<RealPayback> selectShiMing(RealPay realPay, String username);
 }

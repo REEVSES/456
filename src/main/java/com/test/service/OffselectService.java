@@ -1,6 +1,10 @@
 package com.test.service;
 
+import com.test.dao.CollectingSilverBack;
+import com.test.dao.FacePayBack;
 import com.test.dao.OffLine;
+import com.test.utils.selectClass.CollectingSilver;
+import com.test.utils.selectClass.FacePay;
 import com.test.utils.selectClass.MerchantSelect;
 
 import java.util.List;
@@ -13,5 +17,12 @@ import java.util.List;
  */
 
 public interface OffselectService {
+    //受理市场
     List<OffLine> selectShouli(MerchantSelect merchantSelect, String username);
+
+    //收银宝
+    List<CollectingSilverBack> selectShouyin(CollectingSilver requirement, String username);
+
+    //当面付
+    List<FacePayBack> selectDangMian(FacePay requirement, String username);
 }

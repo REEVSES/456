@@ -1,33 +1,32 @@
 package com.test.controller;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.test.dao.Json;
+import com.test.utils.Json;
 import com.test.dao.User;
 import com.test.service.MemberService;
-import com.test.utils.CheckEncoding;
 import com.test.utils.Encript;
+import com.test.utils.loginLevel.ToLayuiJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
 
 @Controller
 @RequestMapping("/login")
 public class UserCtrl extends HttpServlet {
     public MemberService userService;
+    //注入
     @Autowired
     public void setUserService(MemberService userService) {
         this.userService = userService;
     }
-    @RequestMapping("index")
-    public String testIndex(){
-        return "index";
-    }
 
+
+    /**
+     * 登录判断
+     * @param username
+     * @param password
+     * @return
+     */
     @RequestMapping(value = "signIn")
     @ResponseBody
     public User showUser(String username, String password) {
@@ -39,8 +38,13 @@ public class UserCtrl extends HttpServlet {
             return null;
         }
     }
-    /*
-    reset登录密码
+
+    /**
+     *  重置登录密码
+     * @param username
+     * @param oldpwd
+     * @param newpwd
+     * @return
      */
     @RequestMapping(value = "ResetPwd")
     @ResponseBody
@@ -52,10 +56,23 @@ public class UserCtrl extends HttpServlet {
         if (oldpwdMD5.equals(u.getUserpwd()) && !newpwdMD5.equals(u.getUserpwd())){
             //执行修改
             userService.resetPwd(newpwdMD5,username);
-
             return new Json("ok","修改成功！");
         }else {
             return new Json("error","修改失败！");
         }
+    }
+
+    /**
+     * 返回登录权限
+     * @param id
+     * @param leve
+     * @param whzid
+     * @return
+     */
+    @RequestMapping(value = "level")
+    @ResponseBody
+    public ToLayuiJson selectLevel(String id, String leve, String whzid){
+        System.out.println(id+"|||"+leve+"|||"+whzid);
+        return userService.toLayuiJson(id,leve,whzid);
     }
 }

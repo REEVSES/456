@@ -14,9 +14,21 @@ public class FacePay {
     private String source_channel;
     private String startTime;
     private String endTime;
-
     private Integer page;
     private Integer limit;
+
+    @Override
+    public String toString() {
+        return "FacePay{" +
+                "merchant_num='" + merchant_num + '\'' +
+                ", merchant_name='" + merchant_name + '\'' +
+                ", source_channel='" + source_channel + '\'' +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", page=" + page +
+                ", limit=" + limit +
+                '}';
+    }
 
     public String getMerchant_num() {
         return merchant_num;

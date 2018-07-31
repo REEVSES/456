@@ -1,5 +1,6 @@
-package com.test.dao;
+package com.test.dao.mapper;
 
+import com.test.dao.User;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {

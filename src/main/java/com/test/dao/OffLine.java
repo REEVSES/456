@@ -1,5 +1,4 @@
 package com.test.dao;
-
 import java.sql.Date;
 
 /**

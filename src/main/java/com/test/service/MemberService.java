@@ -8,5 +8,5 @@ import java.util.List;
 public interface MemberService {
     User getUserByName(String username);
     int resetPwd(String newpwd,String username);
-    ToLayuiJson toLayuiJson(List<ToLayuiJson_l1> data,String username);
+    ToLayuiJson toLayuiJson(String id,String leve,String whzid);
 }

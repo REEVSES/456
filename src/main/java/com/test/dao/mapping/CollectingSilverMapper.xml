@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.mapper.CollectingSilverMapper">
+    <resultMap id="BaseResultMap" type="com.test.dao.CollectingSilverBack">
+        <id column="商户号" property="merchant_num" jdbcType="VARCHAR" />
+        <result column="终端号" property="terminal_num" jdbcType="VARCHAR" />
+        <result column="商户名" property="business_registration_name" jdbcType="VARCHAR" />
+        <result column="商户入网时间" property="merchant_signon_time" jdbcType="VARCHAR" />
+        <result column="装机完成时间" property="terminal_signon_time" jdbcType="VARCHAR" />
+        <result column="whr" property="guardian" jdbcType="VARCHAR" />
+        <result column="来源渠道" property="source_channel" jdbcType="VARCHAR" />
+        <result column="zd_zdzt" property="terminal_state" jdbcType="VARCHAR" />
+        <result column="商户联系人" property="contact" jdbcType="VARCHAR" />
+        <result column="商户联系人电话" property="contact_num" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        商户号,终端号,商户名,商户入网时间,装机完成时间,whr,来源渠道 ,zd_zdzt,商户联系人,商户联系人电话
+	</sql>
+    <sql id="where_null">
+        <if test="tiaojian.merchant_num !=null and tiaojian.merchant_num !=''">and 商户号  like CONCAT(CONCAT('%', #{tiaojian.merchant_num,jdbcType=VARCHAR}), '%')</if>
+        <if test="tiaojian.business_registration_name !=null and tiaojian.business_registration_name !=''">and 商户名  like CONCAT(CONCAT('%', #{tiaojian.business_registration_name,jdbcType=VARCHAR}), '%')</if>
+        <if test="tiaojian.guardian !=null and tiaojian.guardian !=''">and whr like CONCAT(CONCAT('%', #{tiaojian.guardian,jdbcType=VARCHAR}), '%')</if>
+        <if test="tiaojian.source_channel !=null and tiaojian.source_channel !=''">and 来源渠道  like CONCAT(CONCAT('%', #{tiaojian.source_channel,jdbcType=VARCHAR}), '%')</if>
+    </sql>
+    <select id="selectShouyin" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from [tlzf_syb].[dbo].[sybsh]
+        where tzr =#{username}     <include refid="where_null"></include>
+        and 商户入网时间  BETWEEN #{tiaojian.startTime} AND #{tiaojian.endTime}
+        order by 商户入网时间  desc
+    </select>
+</mapper>

@@ -32,24 +32,46 @@ public class MemberServiceImpl implements MemberService {
 
     /**
      * 装载权限
-     * @param id
      * @param leve
-     * @param whzid
      * @return
      */
     @Override
-    public ToLayuiJson toLayuiJson(String id, String leve, String whzid) {
-        int level = Integer.getInteger(leve);
-        int myID = Integer.getInteger(id);
-        int mywhzid = Integer.getInteger(whzid);
+    public ToLayuiJson toLayuiJson(String leve){
+        int level = Integer.valueOf(leve);
+       // int myID = Integer.getInteger(id);
+        //int mywhzid = Integer.getInteger(whzid);
         ToLayuiJson toLayuiJson = new ToLayuiJson();
-        ToLayuiJson_l1 toLayuiJson_l1 = new ToLayuiJson_l1();
-        ToLayuiJson_l2 toLayuiJson_l2 = new ToLayuiJson_l2();
-        List<ToLayuiJson_l1> list1 = new ArrayList<>();
-        List<ToLayuiJson_l2> list2 = new ArrayList<>();
-        if(level>=5){
+        List<ToLayuiJson_l1> toLayuiJson_l1 = new ArrayList<>();
+        List<ToLayuiJson_l2> toLayuiJson_l2_1 = new ArrayList<>();
+        List<ToLayuiJson_l2> toLayuiJson_l2_2 = new ArrayList<>();
+        List<ToLayuiJson_l2> toLayuiJson_l2_3 = new ArrayList<>();
 
+        //管理员权限
+        if(level>5){
+            toLayuiJson_l1=userMapper.selectMotherset(level);//判断小于
+            toLayuiJson_l2_1=userMapper.selectSubset(1);
+            toLayuiJson_l2_2=userMapper.selectSubset(2);
+            toLayuiJson_l2_3=userMapper.selectSubset(3);
+            toLayuiJson_l1.get(0).setSubset(toLayuiJson_l2_1);
+            toLayuiJson_l1.get(1).setSubset(toLayuiJson_l2_2);
+            toLayuiJson_l1.get(2).setSubset(toLayuiJson_l2_3);
         }
-        return null;
+        //用户权限
+        else {
+            toLayuiJson_l1=userMapper.selectMotherset(level);
+            toLayuiJson_l2_2=userMapper.selectSubset(2);
+            toLayuiJson_l2_3=userMapper.selectSubset(3);
+            toLayuiJson_l1.get(0).setSubset(toLayuiJson_l2_2);
+            toLayuiJson_l1.get(1).setSubset(toLayuiJson_l2_3);
+        }
+        toLayuiJson.setData(toLayuiJson_l1);
+        System.out.println(toLayuiJson.toString());
+        return toLayuiJson;
+    }
+
+    @Override
+    public List<String> selectContain(String leve, String depet,String team) {
+        int level = Integer.valueOf(leve);
+        return userMapper.selectContains(level,depet,team);
     }
 }

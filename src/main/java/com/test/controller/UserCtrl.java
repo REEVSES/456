@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServlet;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/login")
@@ -64,15 +66,21 @@ public class UserCtrl extends HttpServlet {
 
     /**
      * 返回登录权限
-     * @param id
      * @param leve
-     * @param whzid
      * @return
      */
     @RequestMapping(value = "level")
     @ResponseBody
-    public ToLayuiJson selectLevel(String id, String leve, String whzid){
-        System.out.println(id+"|||"+leve+"|||"+whzid);
-        return userService.toLayuiJson(id,leve,whzid);
+    public ToLayuiJson selectLevel(String leve){
+        return userService.toLayuiJson(leve);
+    }
+    @RequestMapping(value = "containMember")
+    @ResponseBody
+    public List<String> selectContain(String leve, String depet, String team){
+        List<String > str =new ArrayList<>();
+        System.out.printf(depet+"|||"+leve+"|||"+team);
+        str = userService.selectContain(leve,depet,team);
+        System.out.printf(str.get(1).toString());
+        return str;
     }
 }

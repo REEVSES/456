@@ -15,11 +15,20 @@
     <sql id="Base_Column_List">
         shbm,zdbm,gszcmc,fdmc,shsptgrq,shlyqd,whr,shzt,zd_zdzt
 	</sql>
+    <sql id="where_null">
+        <if test="tiaojian.business_registration_name !=null and tiaojian.business_registration_name !=''">and gszcmc like CONCAT(CONCAT('%', #{tiaojian.business_registration_name,jdbcType=VARCHAR}), '%')</if>
+        <if test="tiaojian.store_business_name !=null and tiaojian.store_business_name !=''">and fdmc   like CONCAT(CONCAT('%', #{tiaojian.store_business_name,jdbcType=VARCHAR}),'%')</if>
+        <if test="tiaojian.merchant_code !=null and tiaojian.merchant_code !=''">and shbm  like CONCAT(CONCAT('%', #{tiaojian.merchant_code,jdbcType=VARCHAR}),'%')</if>
+        <if test="tiaojian.guardian !=null and tiaojian.guardian !=''">and whr  like CONCAT(CONCAT('%', #{tiaojian.guardian,jdbcType=VARCHAR}),'%')</if>
+        <if test="tiaojian.source_channel !=null and tiaojian.source_channel !=''">and shlyqd  like CONCAT(CONCAT('%', #{tiaojian.source_channel,jdbcType=VARCHAR}),'%')</if>
+        <if test="tiaojian.business_state !=null and tiaojian.business_state !=''">and shzt like CONCAT(CONCAT('%', #{tiaojian.business_state,jdbcType=VARCHAR}),'%')</if>
+        <if test="tiaojian.terminal_state !=null and tiaojian.terminal_state !=''">and zd_zdzt like CONCAT(CONCAT('%', #{tiaojian.terminal_state,jdbcType=VARCHAR}),'%')</if>
+    </sql>
     <select id="selectShouli" resultMap="BaseResultMap" >
         select
         <include refid="Base_Column_List" />
         from [qdtlzf].[dbo].[tlsh]
-        where tzr =#{username,jdbcType=VARCHAR} and gszcmc like CONCAT(CONCAT('%', #{tiaojian.business_registration_name,jdbcType=VARCHAR}), '%') and fdmc   like CONCAT(CONCAT('%', #{tiaojian.store_business_name,jdbcType=VARCHAR}),'%') and shbm  like CONCAT(CONCAT('%', #{tiaojian.merchant_code,jdbcType=VARCHAR}),'%') and whr  like CONCAT(CONCAT('%', #{tiaojian.guardian,jdbcType=VARCHAR}),'%') and shlyqd  like CONCAT(CONCAT('%', #{tiaojian.source_channel,jdbcType=VARCHAR}),'%') and shzt like CONCAT(CONCAT('%', #{tiaojian.business_state,jdbcType=VARCHAR}),'%') and zd_zdzt like CONCAT(CONCAT('%', #{tiaojian.terminal_state,jdbcType=VARCHAR}),'%')
+        where tzr =#{username,jdbcType=VARCHAR} <include refid="where_null"></include>
         and shsptgrq  BETWEEN #{tiaojian.startTime} AND #{tiaojian.endTime}
         order by shsptgrq  desc
     </select>

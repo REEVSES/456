@@ -146,7 +146,7 @@ public class SelectInfo {
      */
     private MsgBackJson getMsgBackJson(List<Object> msg_page, MsgBackJson msgBackJson) {
         if(msg_page.size()==0){
-            msgBackJson.setMsg("查询无记录");
+            msgBackJson.setMsg("查无记录");
             return msgBackJson;
         }else {
             msgBackJson.setMsg("");

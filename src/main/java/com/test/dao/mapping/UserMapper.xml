@@ -24,14 +24,56 @@
         select
         <include refid="Base_Column_List" />
         from [qdtlzf].[dbo].[userlist]
-        where username = #{username,jdbcType=VARCHAR}
+        where username = #{username,jdbcType=VARCHAR} and onwork=1
     </select>
 
     <update id="resetPwd" parameterType="java.lang.String">
-        <!-- 执行的SQL语句 -->
         UPDATE [qdtlzf].[dbo].[userlist] SET
         userpwd = #{newpwd}
         WHERE username = #{username}
     </update>
 
+    <resultMap id="BaseResultMap1" type="com.test.utils.loginLevel.ToLayuiJson_l1">
+        <id column="text" property="text" jdbcType="VARCHAR" />
+        <result column="icon" property="icon" jdbcType="VARCHAR" />
+        <result column="href" property="href" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List1">
+        text,icon,href
+	</sql>
+    <select id="selectMotherset" resultMap="BaseResultMap1" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List1" />
+        from [liuyao].[dbo].[subsetMother]
+        where type_1 &lt; #{type}
+    </select>
+
+    <resultMap id="BaseResultMap2" type="com.test.utils.loginLevel.ToLayuiJson_l2">
+        <id column="text" property="text" jdbcType="VARCHAR" />
+        <result column="icon" property="icon" jdbcType="VARCHAR" />
+        <result column="href" property="href" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List2">
+        text,icon,href
+	</sql>
+    <select id="selectSubset" resultMap="BaseResultMap2" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List2" />
+        from [liuyao].[dbo].[subset]
+        where type_1 = #{type}
+    </select>
+
+    <resultMap id="BaseResultMap3" type="java.lang.String">
+        <id column="username" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List3">
+        username
+	</sql>
+    <select id="selectContains" resultMap="BaseResultMap3" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List3" />
+        from [qdtlzf].[dbo].[userlist]
+        where <if test="level!=6">部门=#{depet} <if test="level!=5">and 团队=#{team}</if>  and</if> leve &lt; #{level}
+    </select>
 </mapper>

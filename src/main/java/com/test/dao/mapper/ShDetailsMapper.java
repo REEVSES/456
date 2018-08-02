@@ -1,6 +1,9 @@
 package com.test.dao.mapper;
 
+import com.test.model.TradeDetails;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @program:456
@@ -9,5 +12,9 @@ import org.apache.ibatis.annotations.Param;
  * @create:2018-08-01 22:58
  */
 public interface ShDetailsMapper {
-    public String merchantDetials(@Param("merchantNo")String merchantNo,@Param("terminalNo")String terminalNo);
+     /*
+          查询受理市场的交易明细
+      */
+     TradeDetails merchantTrade(@Param("merchantNo")String merchantNo, @Param("terminalNo")String terminalNo,@Param("month")String month,@Param("tableName")String tableName);
+
 }

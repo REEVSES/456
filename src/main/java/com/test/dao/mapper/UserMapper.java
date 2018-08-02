@@ -1,6 +1,6 @@
 package com.test.dao.mapper;
 
-import com.test.dao.User;
+import com.test.model.User;
 import com.test.utils.loginLevel.ToLayuiJson_l1;
 import com.test.utils.loginLevel.ToLayuiJson_l2;
 import org.apache.ibatis.annotations.Param;

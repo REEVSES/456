@@ -1,6 +1,6 @@
 package com.test.dao.mapper;
 
-import com.test.dao.RealPayback;
+import com.test.model.RealPayback;
 import com.test.utils.selectClass.RealPay;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;

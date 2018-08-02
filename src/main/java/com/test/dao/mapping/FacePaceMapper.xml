@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.test.dao.mapper.FacePayMapper">
-    <resultMap id="BaseResultMap" type="com.test.dao.FacePayBack">
+    <resultMap id="BaseResultMap" type="com.test.model.FacePayBack">
         <id column="商户号" property="merchant_num" jdbcType="VARCHAR" />
         <result column="商户名" property="merchant_name" jdbcType="VARCHAR" />
         <result column="来源渠道" property="source_channel" jdbcType="VARCHAR" />

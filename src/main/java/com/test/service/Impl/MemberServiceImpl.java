@@ -1,5 +1,5 @@
 package com.test.service.Impl;
-import com.test.dao.User;
+import com.test.model.User;
 import com.test.dao.mapper.UserMapper;
 import com.test.service.MemberService;
 import com.test.utils.loginLevel.ToLayuiJson;

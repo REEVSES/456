@@ -1,8 +1,8 @@
 package com.test.service;
 
-import com.test.dao.CollectingSilverBack;
-import com.test.dao.FacePayBack;
-import com.test.dao.OffLine;
+import com.test.model.CollectingSilverBack;
+import com.test.model.FacePayBack;
+import com.test.model.OffLine;
 import com.test.utils.selectClass.CollectingSilver;
 import com.test.utils.selectClass.FacePay;
 import com.test.utils.selectClass.MerchantSelect;

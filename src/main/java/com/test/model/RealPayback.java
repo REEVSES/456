@@ -1,4 +1,4 @@
-package com.test.dao;
+package com.test.model;
 
 import java.sql.Date;
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.mapper.ShDetailsMapper">
+    <resultMap id="BaseResultMap" type="com.test.model.TradeDetails">
+        <id column="商户号" property="tradeTime" jdbcType="VARCHAR" />
+        <id column="商户号" property="tradeCount" jdbcType="VARCHAR" />
+        <id column="商户号" property="tradeAmount" jdbcType="VARCHAR" />
+        <id column="商户号" property="tradeCharge" jdbcType="VARCHAR" />
+        <id column="商户号" property="tradeProfit" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="where_fuck">
+        <if test="tableName='8213702'">select 交易日期及时间 as tradeTime,交易金额 as tradeAmount,通联收益 as tradeProfit,商户手续费 as tradeCharge from [db_database02_qd].[dbo].[tlls#{month}明细]
+            where 商户编码=#{merchantNo} and 终端编码=#{terminalNo} and 交易状态='0' and (清算标志='1' or 清算标志='4' or 清算标志='5')
+            order by 交易日期及时间 desc</if>
+        <if test="tableName='8210532' and tableName='8214520'">and 商户名  like CONCAT(CONCAT('%', #{tiaojian.merchant_name,jdbcType=VARCHAR}), '%')</if>
+        <if test="tableName !='8213702' and tableName !='8210532'and tableName!='8214520' ">and 商户号  like CONCAT(CONCAT('%', #{tiaojian.merchant_num,jdbcType=VARCHAR}), '%')</if>
+    </sql>
+    <select id="merchantTrade" resultMap="BaseResultMap" >
+        <include refid="where_fuck"></include>
+    </select>
+</mapper>

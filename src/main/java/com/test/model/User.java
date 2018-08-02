@@ -1,4 +1,4 @@
-package com.test.dao;
+package com.test.model;
 
 public class User {
     private int uid;

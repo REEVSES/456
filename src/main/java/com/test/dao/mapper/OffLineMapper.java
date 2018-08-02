@@ -1,5 +1,5 @@
 package com.test.dao.mapper;
-import com.test.dao.OffLine;
+import com.test.model.OffLine;
 import com.test.utils.selectClass.MerchantSelect;
 import org.apache.ibatis.annotations.Param;
 

@@ -1,9 +1,9 @@
 package com.test.controller;
 import com.alibaba.fastjson.JSONObject;
-import com.test.dao.CollectingSilverBack;
-import com.test.dao.FacePayBack;
-import com.test.dao.OffLine;
-import com.test.dao.RealPayback;
+import com.test.model.CollectingSilverBack;
+import com.test.model.FacePayBack;
+import com.test.model.OffLine;
+import com.test.model.RealPayback;
 import com.test.service.OffselectService;
 import com.test.service.OnselectService;
 import com.test.utils.MsgBackJson;

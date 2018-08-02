@@ -1,6 +1,6 @@
 package com.test.dao.mapper;
 
-import com.test.dao.CollectingSilverBack;
+import com.test.model.CollectingSilverBack;
 import com.test.utils.selectClass.CollectingSilver;
 import org.apache.ibatis.annotations.Param;
 

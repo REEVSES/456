@@ -1,7 +1,6 @@
 package com.test.service;
-import com.test.dao.User;
+import com.test.model.User;
 import com.test.utils.loginLevel.ToLayuiJson;
-import com.test.utils.loginLevel.ToLayuiJson_l1;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.test.service;
 
-import com.test.dao.RealPayback;
+import com.test.model.RealPayback;
 import com.test.utils.selectClass.RealPay;
 
 import java.util.List;

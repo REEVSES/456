@@ -1,6 +1,6 @@
 package com.test.service.Impl;
 import com.test.dao.mapper.RealPayMapper;
-import com.test.dao.RealPayback;
+import com.test.model.RealPayback;
 import com.test.service.OnselectService;
 import com.test.utils.selectClass.RealPay;
 import org.springframework.beans.factory.annotation.Autowired;

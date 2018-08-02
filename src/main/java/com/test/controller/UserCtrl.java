@@ -1,6 +1,6 @@
 package com.test.controller;
 import com.test.utils.Json;
-import com.test.dao.User;
+import com.test.model.User;
 import com.test.service.MemberService;
 import com.test.utils.Encript;
 import com.test.utils.loginLevel.ToLayuiJson;

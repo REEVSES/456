@@ -4,6 +4,10 @@ package com.test.service;/*
  * @author:LiuB
  * @create:2018-08-01 22:45
  */
+
 public interface ShDetialsService {
-    public String merchantDetails(String merchantNo, String terminalNo);
+    String merchantDetails(String merchantNo, String terminalNo) throws Exception;
+    String onlineDetails(String merchantNo, String terminalNo) throws Exception;
+    String collectingSilverDetails(String merchantNo, String terminalNo) throws Exception;
+    String facePayDetails(String merchantNo) throws Exception;
 }

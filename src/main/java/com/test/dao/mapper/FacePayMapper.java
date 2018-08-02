@@ -5,7 +5,7 @@ package com.test.dao.mapper;/*
  * @create:2018-07-31 17:46
  */
 
-import com.test.dao.FacePayBack;
+import com.test.model.FacePayBack;
 import com.test.utils.selectClass.FacePay;
 import org.apache.ibatis.annotations.Param;
 

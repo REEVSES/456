@@ -12,9 +12,13 @@ import java.util.List;
  * @create:2018-08-01 22:58
  */
 public interface ShDetailsMapper {
-     /*
-          查询受理市场的交易明细
-      */
-     TradeDetails merchantTrade(@Param("merchantNo")String merchantNo, @Param("terminalNo")String terminalNo,@Param("month")String month,@Param("tableName")String tableName);
-
+     //查询受理市场的交易明细
+     List<TradeDetails> merchantTrade(@Param("merchantNo")String merchantNo,@Param("month")String month,@Param("tablename")String tablename);
+     //查询线上条线的交易明细
+     List<TradeDetails> bianjieTrade(@Param("merchantNo")String merchantNo,@Param("month")String month);
+     List<TradeDetails> dangmianTrade(@Param("merchantNo")String merchantNo,@Param("month")String month);
+     //查询收银宝条线的交易明细
+     List<TradeDetails> csMonthTrade(@Param("merchantNo")String merchantNo,@Param("month")String month);
+     //查询当面付条线的交易明细
+     List<TradeDetails> faceMonthTrade(@Param("merchantNo")String merchantNo,@Param("month")String month);
 }

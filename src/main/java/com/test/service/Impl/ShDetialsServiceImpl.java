@@ -1,9 +1,12 @@
 package com.test.service.Impl;
 import com.test.dao.mapper.ShDetailsMapper;
+import com.test.model.TradeDetails;
 import com.test.service.ShDetialsService;
 import com.test.utils.SqlServerConnect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @program:456
@@ -35,5 +38,32 @@ public class ShDetialsServiceImpl implements ShDetialsService {
     public String facePayDetails(String merchantNo) throws Exception {
         SqlServerConnect sqlServerConnect = new SqlServerConnect();
         return sqlServerConnect.queryDetials("select * from [tlzf_syb].[dbo].[merrecord] where  商户号=\'"+merchantNo+"\'");
+    }
+
+    @Override
+    public List<TradeDetails> merchantTrade(String merchantNo, String month,String tablename) {
+        return shDetailsMapper.merchantTrade(merchantNo,month,tablename);
+    }
+
+
+
+    @Override
+    public List<TradeDetails> csMonthTrade(String merchantNo, String month) {
+        return shDetailsMapper.csMonthTrade(merchantNo,month);
+    }
+
+    @Override
+    public List<TradeDetails> faceMonthTrade(String merchantNo, String month) {
+        return shDetailsMapper.faceMonthTrade(merchantNo,month);
+    }
+
+    @Override
+    public List<TradeDetails> bianjieTrade(String merchantNo, String month) {
+        return shDetailsMapper.bianjieTrade(merchantNo,month);
+    }
+
+    @Override
+    public List<TradeDetails> dangmianTrade(String merchantNo, String month) {
+        return shDetailsMapper.dangmianTrade(merchantNo,month);
     }
 }

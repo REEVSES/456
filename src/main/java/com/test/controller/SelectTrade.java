@@ -47,6 +47,7 @@ public class SelectTrade {
         //SimpleDateFormat dateFormat = new SimpleDateFormat("MMdd");
         //String month = dateFormat.format(date);
         List<TradeDetails> mDetailsBack=shDetialsService.merchantTrade(merchantNo,month,tablename);
+        System.out.println(mDetailsBack.toString());
         // System.out.printf(mDetailsBack);
         return mDetailsBack;
     }
@@ -74,6 +75,7 @@ public class SelectTrade {
         List<TradeDetails> mDetailsBack=shDetialsService.bianjieTrade(merchantNo,month);
         List<TradeDetails> mDetailsBack2=shDetialsService.dangmianTrade(merchantNo,month);
         mDetailsBack.addAll(mDetailsBack2);
+        System.out.println(mDetailsBack.toString());
         return mDetailsBack;
     }
 

@@ -3,20 +3,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.test.dao.mapper.ShDetailsMapper">
     <resultMap id="BaseResultMap" type="com.test.model.TradeDetails">
-        <id column="tradeTime" property="tradeTime" jdbcType="VARCHAR" />
-        <id column="tradeCount" property="tradeCount" jdbcType="VARCHAR" />
-        <id column="tradeAmount" property="tradeAmount" jdbcType="VARCHAR" />
-        <id column="tradeCharge" property="tradeCharge" jdbcType="VARCHAR" />
-        <id column="tradeProfit" property="tradeProfit" jdbcType="VARCHAR" />
+        <result column="tradeTime" property="tradeTime" jdbcType="VARCHAR" />
+        <result column="tradeCount" property="tradeCount" jdbcType="VARCHAR" />
+        <result column="tradeAmount" property="tradeAmount" jdbcType="VARCHAR" />
+        <result column="tradeCharge" property="tradeCharge" jdbcType="VARCHAR" />
+        <result column="tradeProfit" property="tradeProfit" jdbcType="VARCHAR" />
     </resultMap>
     <sql id="where_fuck">
-        <if test="tableName='8213702'">select 交易日期及时间 as tradeTime,交易金额 as tradeAmount,通联收益 as tradeProfit,商户手续费 as tradeCharge ,商户编码 as tradeCount from [db_database02_qd].[dbo].[tlls#{month}明细]
+        <if test="tablename=='8213702'">select 交易日期及时间 as tradeTime,交易金额 as tradeAmount,通联收益 as tradeProfit,商户手续费 as tradeCharge,商户编码 as tradeCount from [db_database02_qd].[dbo].tlls${month}明细
             where 商户编码=#{merchantNo} and 交易状态='0' and (清算标志='1' or 清算标志='4' or 清算标志='5')
             order by 交易日期及时间 desc</if>
-        <if test="tableName='8210532' or tableName='8214520'">select 交易时间 as tradeTime,交易金额 as tradeAmount,通联收益 as tradeProfit,转接服务费 as tradeCharge ,终端编号 as tradeCount  from [qdtlzf].[dbo].[zlls#{month}]
-            where 商户编码=#{merchantNo} and 交易类型='处理成功'
+        <if test="tablename=='8210532'">select 交易时间 as tradeTime,交易金额 as tradeAmount,通联收益 as tradeProfit,转接服务费 as tradeCharge ,终端编号 as tradeCount  from [qdtlzf].[dbo].[zlls${month}]
+            where 商户编码=#{merchantNo}
             order by 交易时间 desc</if>
-        <if test="tableName !='8213702' or tableName !='8210532'or tableName!='8214520' ">月份 as tradeTime,剔除后交易金额 as tradeAmount,总费用 as tradeProfit,总费用 as tradeCharge,剔除交易后笔数 as tradeCount from [qdtlzf].[dbo].[zyhfwlshz20#{month}]
+        <if test="tablename=='8214520'">select 交易时间 as tradeTime,交易金额 as tradeAmount,通联收益 as tradeProfit,转接服务费 as tradeCharge ,终端编号 as tradeCount  from [qdtlzf].[dbo].[zlls${month}]
+            where 商户编码=#{merchantNo}
+            order by 交易时间 desc</if>
+        <if test="tablename !='8213702' and tablename !='8210532' and tablename !='8214520' ">select 月份 as tradeTime,剔除后交易金额 as tradeAmount,总费用 as tradeProfit,总费用 as tradeCharge,剔除后交易笔数 as tradeCount from [qdtlzf].[dbo].[zyhfwlshz20${month}]
             where 商户编号=#{merchantNo}</if>
     </sql>
     <select id="merchantTrade" resultMap="BaseResultMap" >
@@ -31,29 +34,29 @@
         <id column="tradeProfit" property="tradeProfit" jdbcType="VARCHAR" />
     </resultMap>
     <select id="csMonthTrade" resultMap="BaseResultMap1">
-        select 交易时间 as tradeTime,交易金额 as tradeAmount,通联净收益 as tradeProfit,商户手续费 as tradeCharge ,终端号 as tradeCount from tlzf_syb.dbo.sybls#{month}
+        select 交易时间 as tradeTime,交易金额 as tradeAmount,通联净收益 as tradeProfit,商户手续费 as tradeCharge ,终端号 as tradeCount from tlzf_syb.dbo.sybls${month}
         where 商户号=#{merchantNo}
     </select>
 
     <!--  线上当面付交易流水 -->
     <resultMap id="BaseResultMap2" type="com.test.model.TradeDetails">
-        <id column="tradeCount" property="tradeCount" jdbcType="VARCHAR" />
-        <id column="tradeAmount" property="tradeAmount" jdbcType="VARCHAR" />
-        <id column="tradeCharge" property="tradeCharge" jdbcType="VARCHAR" />
-        <id column="tradeProfit" property="tradeProfit" jdbcType="VARCHAR" />
+        <id column="笔数" property="tradeCount" jdbcType="VARCHAR"/>
+        <result column="交易金额" property="tradeAmount" jdbcType="VARCHAR"/>
+        <result column="手续费" property="tradeCharge" jdbcType="VARCHAR" />
+        <result column="通联收益" property="tradeProfit" jdbcType="VARCHAR"/>
     </resultMap>
     <select id="bianjieTrade" resultMap="BaseResultMap2">
-        select 交易金额 as tradeAmount,通联收益 as tradeProfit,手续费 as tradeCharge ,笔数 as tradeCount from smzf.dbo.[tlthz#{month}_便捷付
-        where shbm=#{merchantNo}
+        select 笔数,交易金额,通联收益,手续费 from  [smzf].[dbo].tlthz${month}_便捷付
+        where shbm=#{merchantNo,jdbcType=VARCHAR}
     </select>
     <resultMap id="BaseResultMap3" type="com.test.model.TradeDetails">
-        <id column="tradeCount" property="tradeCount" jdbcType="VARCHAR" />
-        <id column="tradeAmount" property="tradeAmount" jdbcType="VARCHAR" />
-        <id column="tradeProfit" property="tradeProfit" jdbcType="VARCHAR" />
+        <id column="笔数" property="tradeCount" jdbcType="VARCHAR" />
+        <result column="交易金额" property="tradeAmount" jdbcType="VARCHAR"/>
+        <result column="通联收益" property="tradeProfit" jdbcType="VARCHAR"/>
     </resultMap>
     <select id="dangmianTrade" resultMap="BaseResultMap3">
-        select 交易金额 as tradeAmount,通联收益 as tradeProfit,笔数 as tradeCount from smzf.dbo.[tlthz#{month}_实名]
-        where shbm=#{merchantNo}
+        select 笔数,交易金额,通联收益 from  [smzf].[dbo].tlthz${month}_实名
+        where shbm=#{merchantNo,jdbcType=VARCHAR}
     </select>
 
     <!-- 当面付流水-->
@@ -64,7 +67,7 @@
         <id column="tradeProfit" property="tradeProfit" jdbcType="VARCHAR" />
     </resultMap>
     <select id="faceMonthTrade" resultMap="BaseResultMap4">
-        select 合计金额 as tradeAmount,合计收益 as tradeProfit,合计手续费 as tradeCharge ,合计笔数 as tradeCount from tlzf_syb.dbo.dmfls#{month}hz
+        select 合计金额 as tradeAmount,合计收益 as tradeProfit,合计手续费 as tradeCharge ,合计笔数 as tradeCount from tlzf_syb.dbo.dmfls${month}hz
         where 商户号=#{merchantNo}
     </select>
 </mapper>

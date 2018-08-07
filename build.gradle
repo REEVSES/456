@@ -24,6 +24,8 @@ ext {
 
 //依赖的配置
 dependencies {
+    compile project(':DataOperate')
+    compile project(':CheckAccounts')
     //单元测试
     testCompile group: 'junit', name: 'junit', version: '4.12'
     //servlet依赖

@@ -4,6 +4,7 @@ import com.test.model.CollectingSilverBack;
 import com.test.model.FacePayBack;
 import com.test.model.OffLine;
 import com.test.model.RealPayback;
+import com.test.service.Examine;
 import com.test.service.OffselectService;
 import com.test.service.OnselectService;
 import com.test.utils.MsgBackJson;
@@ -22,8 +23,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/query")
 public class SelectInfo {
+    String strtemp;//预声明一切返回的String类型的对象
     public OffselectService offselectService;
     private OnselectService onselectService;
+    private Examine examine;
     //注入service
     @Autowired
     public void setOffselectService(OffselectService offselectService) {
@@ -31,6 +34,8 @@ public class SelectInfo {
     }
     @Autowired
     public void  setOnselectService(OnselectService onselectService){this.onselectService=onselectService;}
+    @Autowired
+    public void  setExamine(Examine examine){this.examine=examine;}
 
     /**
      * 受理条线查询控制
@@ -139,6 +144,20 @@ public class SelectInfo {
     }
 
     /**
+     *  绩效考核查看
+     * @param username,month
+     * @return
+     */
+    @RequestMapping(value = "examine",produces = "application/text;charset=UTF-8")
+    @ResponseBody
+    public String achievements(String username,String month){
+        //strtemp=examine.kaohe1(username,month)+"\n"+examine.kaohe2(username,month)+"\n"+examine.kaohe3(username,month)+"\n"+examine.kaohe4(username,month)+"\n"+examine.kaohe5(username,month)+"\n"+examine.kaohe6(username,month)+"\n"+examine.kaohe7(username,month)+"\n"+examine.kaohe8(username,month)+"\n"+examine.kaohe9(username,month)+"\n"+examine.kaohe10(username,month)+"\n"+examine.kaohe11(username,month)+"\n"+examine.kaohe12(username,month)+"\n"+examine.kaohe13(username,month);
+        strtemp = examine.kaohe13(username,month);
+        System.out.println(strtemp);
+        return strtemp;
+    }
+
+    /**
      * 装载每个查询返回的MsgBackJson
      * @param msg_page
      * @param msgBackJson
@@ -154,5 +173,4 @@ public class SelectInfo {
             return msgBackJson;
         }
     }
-
 }

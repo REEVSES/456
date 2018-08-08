@@ -27,12 +27,11 @@ public class SqlServerConnect
             conn = DriverManager.getConnection(dbURL, userName, userPwd);
             if(conn!=null)
             {
-                System.out.println("Sqlserver Connection Successful!");  //如果连接成功 控制台输出
+                System.out.println("JDBC Connection Successful!");  //如果连接成功 控制台输出
             }
             else{
-
-                System.out.println("Sqlserver Connection fail!");
-                return "凉了，没查到";
+                System.out.println("JDBC Connection fail!");
+                return "凉了，JDBC没连上";
             }
             Statement stat = conn.createStatement();
             ResultSet rs = stat.executeQuery(sql);//定义ResultSet类，用于接收获取的数据

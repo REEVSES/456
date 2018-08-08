@@ -1,14 +1,16 @@
 package com.test.controller;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.test.model.TradeDetails;
 import com.test.service.ShDetialsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
+
 /**
  * @program:456
  * @description:单击显示商户详细信息以及交易记录查询
@@ -43,13 +45,15 @@ public class SelectTrade {
      */
     @RequestMapping(value = "merchantMonthTrade",produces = "application/text;charset=UTF-8")
     @ResponseBody
-    public List<TradeDetails> merchantMonthTrade(String merchantNo,String month,String tablename)  {
+    public String merchantMonthTrade(String merchantNo, String month, String tablename) throws JsonProcessingException {
         //SimpleDateFormat dateFormat = new SimpleDateFormat("MMdd");
         //String month = dateFormat.format(date);
         List<TradeDetails> mDetailsBack=shDetialsService.merchantTrade(merchantNo,month,tablename);
-        System.out.println(mDetailsBack.toString());
         // System.out.printf(mDetailsBack);
-        return mDetailsBack;
+        ObjectMapper objectMapper = new ObjectMapper();
+        String string = objectMapper.writeValueAsString(mDetailsBack);
+        System.out.println(string);
+        return string;
     }
 
     /**
@@ -71,12 +75,14 @@ public class SelectTrade {
      */
     @RequestMapping(value = "onlineMonthTrade",produces = "application/text;charset=UTF-8")
     @ResponseBody
-    public List<TradeDetails> onLineMonthTrade(String merchantNo,String month)  {
+    public String onLineMonthTrade(String merchantNo,String month) throws JsonProcessingException {
         List<TradeDetails> mDetailsBack=shDetialsService.bianjieTrade(merchantNo,month);
         List<TradeDetails> mDetailsBack2=shDetialsService.dangmianTrade(merchantNo,month);
         mDetailsBack.addAll(mDetailsBack2);
-        System.out.println(mDetailsBack.toString());
-        return mDetailsBack;
+        ObjectMapper objectMapper = new ObjectMapper();
+        String string = objectMapper.writeValueAsString(mDetailsBack);
+        System.out.println(string);
+        return string;
     }
 
     /**
@@ -98,9 +104,12 @@ public class SelectTrade {
      */
     @RequestMapping(value = "csMonthTrade",produces = "application/text;charset=UTF-8")
     @ResponseBody
-    public List<TradeDetails> csilverMonthTrade(String merchantNo,String month)  {
+    public String csilverMonthTrade(String merchantNo, String month) throws JsonProcessingException {
         List<TradeDetails> mDetailsBack=shDetialsService.csMonthTrade(merchantNo,month);
-        return mDetailsBack;
+        ObjectMapper objectMapper = new ObjectMapper();
+        String string = objectMapper.writeValueAsString(mDetailsBack);
+        System.out.println(string);
+        return string;
     }
 
     /**
@@ -121,8 +130,11 @@ public class SelectTrade {
      */
     @RequestMapping(value = "faceMonthTrade",produces = "application/text;charset=UTF-8")
     @ResponseBody
-    public List<TradeDetails> faceMonthTrade(String merchantNo,String month)  {
+    public String faceMonthTrade(String merchantNo, String month) throws JsonProcessingException {
         List<TradeDetails> mDetailsBack=shDetialsService.faceMonthTrade(merchantNo,month);
-        return mDetailsBack;
+        ObjectMapper objectMapper = new ObjectMapper();
+        String string = objectMapper.writeValueAsString(mDetailsBack);
+        System.out.println(string);
+        return string;
     }
 }

@@ -13,17 +13,6 @@ public class TradeDetails {
     private String tradeCharge;//手续费
     private String tradeProfit;//收益
 
-    @Override
-    public String toString() {
-        return "TradeDetails{" +
-                "tradeTime='" + tradeTime + '\'' +
-                ", tradeCount='" + tradeCount + '\'' +
-                ", tradeAmount='" + tradeAmount + '\'' +
-                ", tradeCharge='" + tradeCharge + '\'' +
-                ", tradeProfit='" + tradeProfit + '\'' +
-                '}';
-    }
-
     public String getTradeTime() {
         return tradeTime;
     }

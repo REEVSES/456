@@ -16,27 +16,24 @@ import java.util.List;
  */
 @Service("ShDetialsService")
 public class ShDetialsServiceImpl implements ShDetialsService {
+    SqlServerConnect sqlServerConnect = new SqlServerConnect();//jdbc直连
     private ShDetailsMapper shDetailsMapper;
     @Autowired
     public void setShDetailsMapper(ShDetailsMapper shDetailsMapper){this.shDetailsMapper=shDetailsMapper;}
     @Override
     public String merchantDetails(String merchantNo, String terminalNo) throws Exception {
-        SqlServerConnect sqlServerConnect = new SqlServerConnect();
         return sqlServerConnect.queryDetials("select * from qdtlzf.dbo.Merchant where  收单商户编码=\'"+merchantNo+"\' and 终端编号=\'"+terminalNo+"\'");
     }
     @Override
     public String onlineDetails(String merchantNo, String terminalNo) throws Exception {
-        SqlServerConnect sqlServerConnect = new SqlServerConnect();
         return sqlServerConnect.queryDetials("select * from   smzf.dbo.网络支付终端信息1403 where 商户号=\'"+merchantNo+"\' and 终端号=\'"+terminalNo+"\'");
     }
     @Override
     public String collectingSilverDetails(String merchantNo, String terminalNo) throws Exception {
-        SqlServerConnect sqlServerConnect = new SqlServerConnect();
         return sqlServerConnect.queryDetials("select * from [tlzf_syb].[dbo].[sybsh] where  商户号=\'"+merchantNo+"\' and 终端号=\'"+terminalNo+"\'");
     }
     @Override
     public String facePayDetails(String merchantNo) throws Exception {
-        SqlServerConnect sqlServerConnect = new SqlServerConnect();
         return sqlServerConnect.queryDetials("select * from [tlzf_syb].[dbo].[merrecord] where  商户号=\'"+merchantNo+"\'");
     }
 
@@ -44,7 +41,6 @@ public class ShDetialsServiceImpl implements ShDetialsService {
     public List<TradeDetails> merchantTrade(String merchantNo, String month,String tablename) {
         return shDetailsMapper.merchantTrade(merchantNo,month,tablename);
     }
-
 
 
     @Override

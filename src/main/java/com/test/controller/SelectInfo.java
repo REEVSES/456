@@ -148,14 +148,105 @@ public class SelectInfo {
      * @param username,month
      * @return
      */
-    @RequestMapping(value = "examine",produces = "application/text;charset=UTF-8")
+    @RequestMapping(value = "examine1",produces = "application/text;charset=UTF-8")
     @ResponseBody
-    public String achievements(String username,String month){
-        //strtemp=examine.kaohe1(username,month)+"\n"+examine.kaohe2(username,month)+"\n"+examine.kaohe3(username,month)+"\n"+examine.kaohe4(username,month)+"\n"+examine.kaohe5(username,month)+"\n"+examine.kaohe6(username,month)+"\n"+examine.kaohe7(username,month)+"\n"+examine.kaohe8(username,month)+"\n"+examine.kaohe9(username,month)+"\n"+examine.kaohe10(username,month)+"\n"+examine.kaohe11(username,month)+"\n"+examine.kaohe12(username,month)+"\n"+examine.kaohe13(username,month);
+    public String achievements1(String username,String month){
+        strtemp = examine.kaohe1(username,month);
+        System.out.println(strtemp);
+        return strtemp;
+    }
+    @RequestMapping(value = "examine2",produces = "application/text;charset=UTF-8")
+    @ResponseBody
+    public String achievements2(String username,String month){
+        strtemp = examine.kaohe2(username,month);
+        System.out.println(strtemp);
+        return strtemp;
+    }
+    @RequestMapping(value = "examine3",produces = "application/text;charset=UTF-8")
+    @ResponseBody
+    public String achievements3(String username,String month){
+        strtemp = examine.kaohe3(username,month);
+        System.out.println(strtemp);
+        return strtemp;
+    }
+    @RequestMapping(value = "examine4",produces = "application/text;charset=UTF-8")
+    @ResponseBody
+    public String achievements4(String username,String month){
+        strtemp = examine.kaohe4(username,month);
+        System.out.println(strtemp);
+        return strtemp;
+    }
+    @RequestMapping(value = "examine5",produces = "application/text;charset=UTF-8")
+    @ResponseBody
+    public String achievements5(String username,String month){
+        strtemp = examine.kaohe5(username,month);
+        System.out.println(strtemp);
+        return strtemp;
+    }
+    @RequestMapping(value = "examine6",produces = "application/text;charset=UTF-8")
+    @ResponseBody
+    public String achievements6(String username,String month){
+        strtemp = examine.kaohe6(username,month);
+        System.out.println(strtemp);
+        return strtemp;
+    }
+    @RequestMapping(value = "examine7",produces = "application/text;charset=UTF-8")
+    @ResponseBody
+    public String achievements7(String username,String month){
+        strtemp = examine.kaohe7(username,month);
+        System.out.println(strtemp);
+        return strtemp;
+    }
+    @RequestMapping(value = "examine8",produces = "application/text;charset=UTF-8")
+    @ResponseBody
+    public String achievements8(String username,String month){
+        strtemp = examine.kaohe8(username,month);
+        System.out.println(strtemp);
+        return strtemp;
+    }
+    @RequestMapping(value = "examine9",produces = "application/text;charset=UTF-8")
+    @ResponseBody
+    public String achievements9(String username,String month){
+        strtemp = examine.kaohe9(username,month);
+        System.out.println(strtemp);
+        return strtemp;
+    }
+    @RequestMapping(value = "examine10",produces = "application/text;charset=UTF-8")
+    @ResponseBody
+    public String achievements10(String username,String month){
+        strtemp = examine.kaohe10(username,month);
+        System.out.println(strtemp);
+        return strtemp;
+    }
+ @RequestMapping(value = "examine11",produces = "application/text;charset=UTF-8")
+    @ResponseBody
+    public String achievements11(String username,String month){
+        strtemp = examine.kaohe11(username,month);
+        System.out.println(strtemp);
+        return strtemp;
+    }
+ @RequestMapping(value = "examine12",produces = "application/text;charset=UTF-8")
+    @ResponseBody
+    public String achievements12(String username,String month){
+        strtemp = examine.kaohe12(username,month);
+        System.out.println(strtemp);
+        return strtemp;
+    }
+ @RequestMapping(value = "examine13",produces = "application/text;charset=UTF-8")
+    @ResponseBody
+    public String achievements13(String username,String month){
         strtemp = examine.kaohe13(username,month);
         System.out.println(strtemp);
         return strtemp;
     }
+    @RequestMapping(value = "examine14",produces = "application/text;charset=UTF-8")
+    @ResponseBody
+    public String achievements14(String username,String month){
+        strtemp = examine.kaohe14(username,month);
+        System.out.println(strtemp);
+        return strtemp;
+    }
+
 
     /**
      * 装载每个查询返回的MsgBackJson
@@ -163,7 +254,7 @@ public class SelectInfo {
      * @param msgBackJson
      * @return MsgBackJson
      */
-    private MsgBackJson getMsgBackJson(List<Object> msg_page, MsgBackJson msgBackJson) {
+    private  MsgBackJson getMsgBackJson(List<Object> msg_page, MsgBackJson msgBackJson) {
         if(msg_page.size()==0){
             msgBackJson.setMsg("查无记录");
             return msgBackJson;

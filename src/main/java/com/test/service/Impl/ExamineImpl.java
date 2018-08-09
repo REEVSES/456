@@ -1,9 +1,7 @@
 package com.test.service.Impl;
-
 import com.test.service.Examine;
 import com.test.utils.SqlServerConnect;
 import org.springframework.stereotype.Service;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -108,10 +106,34 @@ public class ExamineImpl implements Examine {
         return null;
     }
 
+    /**
+     * 个人绩效考核,分部门和团队的情况下
+     * @param username
+     * @param month
+     * @return
+     */
     @Override
     public String kaohe10(String username, String month){
         try {
-            return sqlServerConnect.queryDetials("select * from kaohe.dbo.[绩效考核总表\\绩效考核市场区市创新20"+month+"] where  姓名=\'"+username+"\'");
+            String sql="";String bumen=sqlServerConnect.queryAuthority(username).get(0);
+            if("市场部".equals(bumen) || "区市部".equals(bumen) || "创新部".equals(bumen)) {
+                sql="select * from kaohe.dbo.[绩效考核总表\\绩效考核市场区市创新20"+month+"] where  姓名=\'"+username+"\'";
+            }else if("个人部".equals(bumen)) {
+                sql = "select * from kaohe.dbo.[绩效考核个人业务部20" + month + "] where  姓名=\'" + username + "\'";
+            }else if("技术部".equals(bumen)) {
+                sql = "select * from kaohe.dbo.[绩效考核技术支持部20" + month + "] where  姓名=\'" + username + "\'";
+            }else if("金融部".equals(bumen)) {
+                sql = "select * from kaohe.dbo.[绩效考核金融服务部20" + month + "] where  姓名=\'" + username + "\'";
+            }else if("商服部".equals(bumen)) {
+                sql = "select * from kaohe.dbo.[绩效考核商户服务部20" + month + "] where  姓名=\'" + username + "\'";
+            }else  if("业务部".equals(bumen)) {
+                sql = "select * from kaohe.dbo.[绩效考核业务管理部20" + month + "] where  姓名=\'" + username + "\'";
+            }else  if("综合部".equals(bumen)) {
+                sql = "select * from kaohe.dbo.[绩效考核综合部20" + month + "] where  姓名=\'" + username + "\'";
+            }else  if("副总经理".equals(bumen)) {
+                sql = "select * from kaohe.dbo.[绩效考核公司领导" + month + "] where  姓名=\'" + username + "\'";
+            }
+            return sqlServerConnect.queryDetials(sql);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -153,6 +175,27 @@ public class ExamineImpl implements Examine {
     public String kaohe13(String username, String month) {
         try {
             return sqlServerConnect.queryDetials("select * from kaohe.dbo.[综合支付预收日结月结后付商户20"+month+"] where  拓展人=\'"+username+"\'");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 市场三个部门绩效考核总表
+     * @param username
+     * @param month
+     * @return
+     */
+    @Override
+    public String kaohe14(String username, String month) {
+        try {
+            String sql="";String laozong=sqlServerConnect.queryAuthority(username).get(1);
+            System.out.printf("hehehehehehehe"+laozong);
+            if("部门总".equals(laozong)||"副总经理".equals(laozong)||"总经理".equals(laozong)){
+                sql = "select * from kaohe.dbo.[绩效考核总表\\绩效考核市场区市创新20"+month+"]";
+            }else sql="select * from kaohe.dbo.[end]";
+            return sqlServerConnect.queryDetials(sql);
         } catch (Exception e) {
             e.printStackTrace();
         }

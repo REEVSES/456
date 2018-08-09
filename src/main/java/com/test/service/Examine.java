@@ -20,4 +20,5 @@ public interface Examine {
     String kaohe11(String username,String month);
     String kaohe12(String username,String month);
     String kaohe13(String username,String month);
+    String kaohe14(String username,String month);
 }
